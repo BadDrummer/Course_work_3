@@ -32,6 +32,26 @@ def mask_card(card: str):
 
 
 '''функция, которая переводит дату транзакции в требуемый формат ЧЧ.ММ.ГГГГ'''
+
+
 def format_date(str_date: str) -> str:
     list_date = str_date[:10].split('-')
     return '.'.join(reversed(list_date))
+
+
+'''функция для вывода данных в требуемом по заданию формате'''
+
+
+def formatted_data(item: dict):
+    item_date = format_date(item.get("date"))
+
+    if item.get("from"):
+        from_bill = mask_card(item.get("from")) + ' '
+    else:
+        from_bill = ''
+
+    to_bill = mask_card(item.get("to"))
+
+    return f'{item_date} {item.get("description")}\n' \
+           f'{from_bill}-> {to_bill}\n' \
+           f'{item["operationAmount"]["amount"]} {item["operationAmount"]["currency"]["name"]}\n'

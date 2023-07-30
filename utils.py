@@ -30,3 +30,8 @@ def mask_card(card: str):
         return f'{card[0]} **{card[-1][-4:]}'
     return f'{" ".join(card[:-1])} {card[-1][:4]} {card[-1][4:6]}** **** {card[-1][-4:]}'
 
+
+'''функция, которая переводит дату транзакции в требуемый формат ЧЧ.ММ.ГГГГ'''
+def format_date(str_date: str) -> str:
+    list_date = str_date[:10].split('-')
+    return '.'.join(reversed(list_date))
